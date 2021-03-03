@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  db:
+    container_name: burgerdome.db
+    image: postgres
+    environment:
+       POSTGRES_DB: 'burgerdome_db'
+       POSTGRES_USER: 'postgres'
+       POSTGRES_PASSWORD: 'docker'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  web:
+    container_name: burgerdome.web
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  postgres_data:
