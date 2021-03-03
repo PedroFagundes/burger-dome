@@ -24,7 +24,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-PROJECT_APPS = []
+PROJECT_APPS = ['core.authentication']
 
 THIRD_PARTY_APPS = []
 
@@ -116,3 +116,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR.parent / "static"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+# Customizing auth user model
+AUTH_USER_MODEL = 'authentication.User'
